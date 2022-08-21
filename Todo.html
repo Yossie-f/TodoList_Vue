@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Todo List</title>
+  <link rel="stylesheet" href="css/Todo.css">
+</head>
+<body>
+  <div id="app">
+    <h2>TODOリスト</h2>
+
+    <form v-on:submit.prevent>
+      <input type="text" v-model="newItem" ref="ref">
+      <button @click="addItem">追加</button>
+    </form>
+    <hr>
+
+    <ul>
+      <!-- タスクを繰り返し表示 -->
+      <li v-for="(todo,index) in todos">
+        <input type="checkbox" v-model="todo.isDone">
+        <!-- isDoneがtrueならdoneクラスが追加される -->
+        <span type="text"  :class="{done: todo.isDone}">{{todo.item}}</span>
+        <button v-on:click="deleteItem(index)">削除</button>
+        <hr>
+      </li>
+    </ul>
+
+    <!-- データプロパティ確認用 -->
+    <!-- <pre>{{$data}}</pre> -->
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <script src="js/Todo.js"></script>
+</body>
+</html>
